@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>ListPage</title>
+{% endblock title%}
+
+{% block content %}
+    <br>
+
+    {% comment %} search or filter function {% endcomment %}
+    {% comment %} <form method="get">
+        {{FamilyFilter.form.as_p}}
+        <input type="submit" value="Press">
+    </form>
+
+    {% for person in filtered_person.qs %}
+        <h2>
+            {{person.firstName}}
+            {{person.middleName}}
+            {{person.lastName}}
+            {{person.familyMembers}}
+            {{person.verified}}
+        </h2>
+    {% endfor %} {% endcomment %}
+
+        <table class="table table-bordered table-hover">
+                <thead class="thead-white">
+                    <tr class="table-success">
+                        <th scope="col">First Name</th>
+                        <th scope="col">Middle Name</th>
+                        <th scope="col">Last Name</th>
+                        <th scope="col">Number of Family Members</th>
+                        <th scope="col">Verified</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                
+                {%for obj in all_families%}
+                    {% if obj.verified %}
+                        <tr class="bg-white">
+                            <td>{{obj.firstName}}</td>
+                            <td>{{obj.middleName}}</td>
+                            <td>{{obj.lastName}}</td>
+                            <td>{{obj.familyMembers}}</td>
+                            <td class="bg-success">Verified</td>
+                            <td><a href="{% url 'verify' obj.id %}" class="btn btn-outline-info">unverify</a></td>
+                        </tr>
+                    {%else%}
+                        <tr class="bg-white">
+                            <td>{{obj.firstName}}</td>
+                            <td>{{obj.middleName}}</td>
+                            <td>{{obj.lastName}}</td>
+                            <td>{{obj.familyMembers}}</td>
+                            <td class="bg-warning">Not Verified</td>
+                            <td><a href="{% url 'verify' obj.id %}" class="btn btn-outline-primary">verify</a></td>
+                        </tr>
+                    {% endif %}
+                {% endfor%}
+                </tbody>
+        </table>   
+    </div>
+{% endblock content %}  
+
+

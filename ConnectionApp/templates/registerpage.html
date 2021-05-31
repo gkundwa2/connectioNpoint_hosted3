@@ -1,0 +1,47 @@
+
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>RegisterPage</title>
+{% endblock title%}
+
+{% block content %}
+    <div class = "container">
+    </br>
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-info" role="alert">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-row">
+                <div class="col-md-3 mb-4">
+                    <label >First name</label>
+                    <input type="text" class="form-control" name="firstName"  placeholder="First name" required>
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    <label >MiddleName</label>
+                    <input type="text" class="form-control" name="middleName"  placeholder="Middle name" >
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    <label>Last name</label>
+                    <input type="text" class="form-control" name="lastName"  placeholder="Last name" required>
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    <label >Number of Family Members</label>
+                    <input type="number" min="1" class="form-control" name="familyMembers" placeholder="Number of Family members"  required>
+                </div>
+            </div>
+
+            <button class="btn btn-primary" type="submit">Register</button>   
+        </form>
+    </div>
+
+{% endblock content %}

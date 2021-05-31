@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>Homepage</title>
+{% endblock title%}
+
+
+{% block content%}
+    <form method = "get">
+        {{FamilyFilter.form.as_p}}
+
+
+    {% comment %} Filter/Search function  {% endcomment %}
+
+        {% comment %} <div class="form-group row">
+            <div class="col-sm-3 my-1">
+                <label class="sr-only" for="inlineFormInputName"> <b>First Name </b></label>
+                <input type="text" class="form-control" id="inlineFormInputName" placeholder="Gabin">
+            </div>
+
+            <div class="col-sm-3 my-1">
+                <label class="sr-only" for="inlineFormInputName"> <b> Middle Name </b></label>
+                <input type="text" class="form-control" id="inlineFormInputName" placeholder="N">
+            </div>
+
+            <div class="col-sm-3 my-1">
+                <label class="sr-only" for="inlineFormInputName"> <b> Last Name </b> </label>
+                <input type="text" class="form-control" id="inlineFormInputName" placeholder="Kundwa">
+            </div>
+
+            <div class="col-auto my-3">
+                <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+        </div> {% endcomment %}
+    </form>
+
+    {% for person in filtered_person%}
+        <h2>
+        {{person.firstName}}
+        {{person.middleName}}
+        {{person.lastName}}
+        {{person.familyMembers}}
+
+        </h2>
+    {%endfor%}
+{% endblock content%}
+
