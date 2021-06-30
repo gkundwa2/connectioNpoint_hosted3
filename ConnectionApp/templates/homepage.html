@@ -6,13 +6,17 @@
 
 
 {% block content%}
-    <form method = "get">
+    <div class="container" id="Welcome text">
+      <h1>You are The Most Welcome at Connection Point</h1>
+    </div>
+    <!-- <form method = "get">
         {{FamilyFilter.form.as_p}}
 
 
     {% comment %} Filter/Search function  {% endcomment %}
 
-        {% comment %} <div class="form-group row">
+        {% comment %}
+        <div class="form-group row">
             <div class="col-sm-3 my-1">
                 <label class="sr-only" for="inlineFormInputName"> <b>First Name </b></label>
                 <input type="text" class="form-control" id="inlineFormInputName" placeholder="Gabin">
@@ -32,9 +36,9 @@
                 <button type="submit" class="btn btn-primary">Search</button>
             </div>
         </div> {% endcomment %}
-    </form>
+    </form> -->
 
-    {% for person in filtered_person%}
+    <!-- {% for person in filtered_person%}
         <h2>
         {{person.firstName}}
         {{person.middleName}}
@@ -42,6 +46,5 @@
         {{person.familyMembers}}
 
         </h2>
-    {%endfor%}
+    {%endfor%} -->
 {% endblock content%}
-

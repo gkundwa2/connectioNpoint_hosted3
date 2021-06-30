@@ -5,6 +5,8 @@ from ConnectionApp.forms import DatabaseForm
 from django.contrib import messages
 from .filters import FamilyFilter
 
+from django.core.paginator import Paginator
+
 
 # Homepage / Search
 def homepage(request):
@@ -22,7 +24,27 @@ def homepage(request):
 
 def listpage(request):
     all_families = FamilyIdentity.objects.all()
-    return render(request, 'listpage.html', {'all_families': all_families})
+    search_option = ""
+    search_pattern = ""
+    if request.GET.get("search_option", False):
+        search_option = request.GET.get("search_option")
+        search_pattern = request.GET.get("search_pattern")
+
+        if search_option.strip().lower() == "first_name":
+            all_families = FamilyIdentity.objects.filter(firstName__icontains=search_pattern)
+        elif search_option.strip().lower() == "last_name":
+            all_families = FamilyIdentity.objects.filter(lastName__icontains=search_pattern)
+        elif search_option.strip().lower() == "family_members":
+            all_families = FamilyIdentity.objects.filter(familyMembers__icontains=search_pattern)
+
+
+    paginator = Paginator(all_families, 5)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    context = {'page_obj': page_obj,
+                'search_option': search_option,
+                'search_pattern': search_pattern}
+    return render(request, 'listpage.html', context)
 
 # register page function
 

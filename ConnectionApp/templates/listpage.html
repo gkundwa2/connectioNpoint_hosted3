@@ -6,23 +6,18 @@
 
 {% block content %}
     <br>
-
-    {% comment %} search or filter function {% endcomment %}
-    {% comment %} <form method="get">
-        {{FamilyFilter.form.as_p}}
-        <input type="submit" value="Press">
-    </form>
-
-    {% for person in filtered_person.qs %}
-        <h2>
-            {{person.firstName}}
-            {{person.middleName}}
-            {{person.lastName}}
-            {{person.familyMembers}}
-            {{person.verified}}
-        </h2>
-    {% endfor %} {% endcomment %}
-
+       <form method="get" class="form-inline" action="">
+          <!-- {{FamilyFilter.form.as_p}} -->
+          <label>Search by: </label>
+          <select name="search_option">
+            <option value="first_name">First name</option>
+            <option value="last_name">Last name</option>
+            <option value="family_members">Family members number</option>
+          </select>
+          <input type="text" name="search_pattern" placeholder="enter your search..." required>
+          <input type="submit" value="search">
+      </form><br/>
+        <h4 class="text-center">List of famillies registered</h4>
         <table class="table table-bordered table-hover">
                 <thead class="thead-white">
                     <tr class="table-success">
@@ -35,8 +30,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                
-                {%for obj in all_families%}
+
+                {%for obj in page_obj%}
                     {% if obj.verified %}
                         <tr class="bg-white">
                             <td>{{obj.firstName}}</td>
@@ -58,8 +53,23 @@
                     {% endif %}
                 {% endfor%}
                 </tbody>
-        </table>   
+        </table>
+        <div class="container mt-4 text-center">
+          <p class="step-links">
+              {% if page_obj.has_previous %}
+                  <a href="?page=1&search_option={{ search_option }}&search_pattern={{ search_pattern }}" class="btn btn-outline-primary">&laquo; first</a>
+                  <a href="?page={{ page_obj.previous_page_number }}&search_option={{ search_option }}&search_pattern={{ search_pattern }}" class="btn btn-outline-primary">previous</a>
+              {% endif %}
+
+              <span class="current">
+                  Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+              </span>
+
+              {% if page_obj.has_next %}
+                  <a href="?page={{ page_obj.next_page_number }}&search_option={{ search_option }}&search_pattern={{ search_pattern }}" class="btn btn-outline-primary">next</a>
+                  <a href="?page={{ page_obj.paginator.num_pages }}&search_option={{ search_option }}&search_pattern={{ search_pattern }}" class="btn btn-outline-primary">last &raquo;</a>
+              {% endif %}
+          </p>
+      </div>
     </div>
-{% endblock content %}  
-
-
+{% endblock content %}
