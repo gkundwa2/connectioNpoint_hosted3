@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>ListPage</title>
+{% endblock title%}
+
+{% block content %}
+<div style="padding:10px 30px;" class="container">
+      <p>Do you really want to delete this transaction for <b>{{ trans.family.firstName }} {{ trans.family.middleName }} {{ trans.family.lastName }} family</b>?</P>
+        <a href="{% url 'delete_transaction' trans.id %}" class="btn btn-danger mr-4">Yes</a>
+        <a href="{% url 'transactions_list' %}" class="btn btn-info">No</a>
+</div>
+{% endblock content %}

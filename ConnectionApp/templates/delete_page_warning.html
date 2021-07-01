@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>ListPage</title>
+{% endblock title%}
+
+{% block content %}
+<div style="padding:10px 30px;" class="container">
+      <p>Do you really want to delete <b>{{ fam.firstName }} {{ fam.middleName }} {{ fam.lastName }}</b> family identity?</P>
+      <a href="{% url 'delete_family' fam.id %}" class="btn btn-danger mr-4">Yes</a>
+      <a href="{% url 'listpage' %}" class="btn btn-info">No</a>
+</div>
+{% endblock content %}

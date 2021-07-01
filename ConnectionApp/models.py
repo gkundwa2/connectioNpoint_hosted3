@@ -1,7 +1,5 @@
 from django.db import models
-# from phone_field import PhoneField
-
-# Create your models here.
+import datetime
 
 
 class FamilyIdentity(models.Model):
@@ -9,13 +7,10 @@ class FamilyIdentity(models.Model):
     middleName = models.CharField(max_length=50, blank=True, null=True)
     lastName = models.CharField(max_length=50)
     familyMembers = models.PositiveIntegerField()
-    # phone=models.PhoneField(blank=True, help_text='Contact Phone number')
-    # email=models.EmailField(max_length=254)
+    phone = models.CharField(blank=True, null=True, max_length=20)
     verified = models.BooleanField(default=False)
-    # lastSeen=models.DateField(_(auto_now=False, auto_now_add=False)
+    national_doc = models.CharField(null= True, blank=True, max_length=30)
 
-    # class Meta:
-    #     db_table=u'familyIdentity'
 
     def setVerified(self):
         self.verified = not self.verified
@@ -25,4 +20,13 @@ class FamilyIdentity(models.Model):
         return self.firstName + " " + self.middleName + " " + self.lastName + " " + str(self.familyMembers) + " " + str(self.verified)
 
 
-# + + self.phone + self.email
+class Transaction(models.Model):
+    """ model which represents an abstraction of transactions in the database ."""
+
+    family = models.ForeignKey(FamilyIdentity, related_name="family_transactions", on_delete=models.CASCADE)
+    trans_date = models.DateTimeField(default=datetime.datetime.now)
+    food_given = models.TextField(blank=True, null=True)
+
+
+    def __str__(self):
+        return f"{self.trans_date}"

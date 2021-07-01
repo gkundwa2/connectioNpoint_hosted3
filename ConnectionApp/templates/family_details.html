@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>ListPage</title>
+{% endblock title%}
+
+{% block content %}
+<div style="padding:10px 30px;">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-info" role="alert">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+        <div class="row">
+            <div class="col-6">
+               <form method="POST" class="form-inline" action="{% url 'new_transaction' fam.firstName fam.lastName fam.id %}">
+                  {% csrf_token %}
+                  <label style="font-weight: bold;">Record new transaction: </label>
+                  <input type="text" name="note" placeholder="Note about transaction..." style="padding: 7px; border: 1px solid rgba(0,0,0,0.5); border-radius: 5px;">
+                  <input type="submit" value="record" class="btn btn-outline-primary">
+              </form>
+            </div>
+            <div class="col-6">
+              <p style="font-weight: bold;">Filter transactions by date range</p>
+               <form method="get" class="form-inline" action="{% url 'list_details' fam.id %}">
+                  {% csrf_token %}
+                  <label style="font-weight: bold;">From: </label>
+                  <input type="date" name="from_date" required style="padding: 7px; border: 1px solid rgba(0,0,0,0.5); border-radius: 5px;">
+                  <label style="font-weight: bold;">To: </label>
+                  <input type="date" name="to_date" required style="padding: 7px; border: 1px solid rgba(0,0,0,0.5); border-radius: 5px;">
+                  <input type="submit" value="filter" class="btn btn-outline-info">
+              </form><br/>
+            </div>
+        </div>
+        <h4 class="text-center">List of transactions made by {{ fam.firstName }} {{ fam.lastName }} family</h4>
+        <div style="width: 100%; overflow-x: scroll;">
+            <table class="table table-responsive table-bordered table-hover table-striped" style="white-space: nowrap;">
+                    <thead class="thead-white">
+                        <tr class="table-success">
+                            <th scope="col">Date of transaction</th>
+                            <th scope="col">Family representative</th>
+                            <th scope="col">Family members</th>
+                            <th scope="col">Additional info</th>
+                            <th scope="col" colspan="1" class="text-center"> Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    {%for obj in page_obj%}
+                        <tr class="bg-white">
+                            <td>{{obj.trans_date}}</td>
+                            <td>{{fam.firstName}} {{fam.lastName}}</td>
+                            <td>{{fam.familyMembers}} members</td>
+                            <td>{{obj.food_given}}</td>
+                              <td><a href="{% url 'delete_warning_trans' obj.id %}" class="btn btn-outline-danger">delete</a></td>
+                        </tr>
+                    {% endfor%}
+                    </tbody>
+            </table>
+        </div>
+        <div class="container mt-4 text-center">
+          <p class="step-links">
+              {% if page_obj.has_previous %}
+                  <a href="?page=1&from_date={{ from_date }}&to_date={{ to_date }}" class="btn btn-outline-primary">&laquo; first</a>
+                  <a href="?page={{ page_obj.previous_page_number }}&from_date={{ from_date }}&to_date={{ to_date }}" class="btn btn-outline-primary">previous</a>
+              {% endif %}
+
+              <span class="current">
+                  Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+              </span>
+
+              {% if page_obj.has_next %}
+                  <a href="?page={{ page_obj.next_page_number }}&from_date={{ from_date }}&to_date={{ to_date }}" class="btn btn-outline-primary">next</a>
+                  <a href="?page={{ page_obj.paginator.num_pages }}&from_date={{ from_date }}&to_date={{ to_date }}" class="btn btn-outline-primary">last &raquo;</a>
+              {% endif %}
+          </p>
+      </div>
+    </div>
+{% endblock content %}
