@@ -7,4 +7,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('connectionpantry/', include('ConnectionApp.urls')),
     path("", views.homepage),
+    path('account/', include('users_app.urls')),
 ]

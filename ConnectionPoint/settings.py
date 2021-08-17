@@ -11,28 +11,16 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 import os
 from pathlib import Path
-import environ
+# import environ
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-env = environ.Env(SECRET_KEY=str,)
-environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
+SECRET_KEY = '(5enj5z@od!wb$t0z18#e%gt0=1v82p&d70_!)ho*6%_#w9$^j'
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = env('DJANGO_SECRET_KEY')
-SECRET_KEY = 'django-insecure-$=*=o2jvzzwixbnnhffy7+s=my7p9dp95mu_t8d73*+oo*ajai'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = env('DJANGO_DEBUG')
 DEBUG = True
 
-# ALLOWED_HOSTS = [env('DJANGO_ALLOWED_HOSTS')]
 ALLOWED_HOSTS = []
 
 
@@ -46,7 +34,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'ConnectionApp',
-    'django_filters',
+    'users_app',
+
+    
 ]
 
 MIDDLEWARE = [

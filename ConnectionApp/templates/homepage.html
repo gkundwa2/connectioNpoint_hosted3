@@ -1,50 +1,37 @@
 {% extends 'base.html' %}
+{% load static %}
 
-{% block title %}
-    <title>Homepage</title>
-{% endblock title%}
+ {% block title %}
+    <title>Welcome To Connection Point homepage</title>
+{% endblock title %}
 
 
-{% block content%}
-    <div class="container" id="Welcome text">
-      <h1>You are The Most Welcome at Connection Point</h1>
+{% block content %}
+    <div class = "container">
+        <div class="row mt-5">
+            <div class="col-md-10 offset-md-1">
+                <center><p class="h1 text-primary">Welcome at ConnectioN Point Open Shelf and Pantry</p></center>
+            </div>  
+       </div>
+       <div class="row mt-5">
+          <div class="col-lg-4">
+            <img src="{% static 'images/backgroundimage1.jpg'%}" alt="index" class ="rounded-lg shadow" width ="360" height= "250">
+          </div>
+          <div class="col-lg-4">
+            <img src="{% static 'images/backgroundimage2.jpg'%}" alt="index" class ="rounded-lg shadow" width ="360" height= "250">
+          </div>
+          <div class="col-lg-4">
+            <img src="{% static 'images/backgroundimage3.jpeg'%}" alt="index" class ="rounded-lg shadow" width ="360" height= "250">
+          </div>  
+       </div>
+       <div class="row mt-5">
+        <div class="col-md-10 offset-md-1">
+           <center><p class="h1 text-primary">This is The Best Place to Be,</p></center>
+           <center><p class="h2 text-success">Thank You For Your Kind Heart and</p></center>
+           <center><p class="h3 text-warning">Spread Love Whenever You Go!</p></center>
+
+           <center><a href =" {% url 'listpage'%}"<button type="button" class="btn btn-primary btn-lg mt-3 shadow">Look For The Person</button></a></center>
+        </div>  
+       </div>
     </div>
-    <!-- <form method = "get">
-        {{FamilyFilter.form.as_p}}
-
-
-    {% comment %} Filter/Search function  {% endcomment %}
-
-        {% comment %}
-        <div class="form-group row">
-            <div class="col-sm-3 my-1">
-                <label class="sr-only" for="inlineFormInputName"> <b>First Name </b></label>
-                <input type="text" class="form-control" id="inlineFormInputName" placeholder="Gabin">
-            </div>
-
-            <div class="col-sm-3 my-1">
-                <label class="sr-only" for="inlineFormInputName"> <b> Middle Name </b></label>
-                <input type="text" class="form-control" id="inlineFormInputName" placeholder="N">
-            </div>
-
-            <div class="col-sm-3 my-1">
-                <label class="sr-only" for="inlineFormInputName"> <b> Last Name </b> </label>
-                <input type="text" class="form-control" id="inlineFormInputName" placeholder="Kundwa">
-            </div>
-
-            <div class="col-auto my-3">
-                <button type="submit" class="btn btn-primary">Search</button>
-            </div>
-        </div> {% endcomment %}
-    </form> -->
-
-    <!-- {% for person in filtered_person%}
-        <h2>
-        {{person.firstName}}
-        {{person.middleName}}
-        {{person.lastName}}
-        {{person.familyMembers}}
-
-        </h2>
-    {%endfor%} -->
-{% endblock content%}
+{% endblock content %}  
