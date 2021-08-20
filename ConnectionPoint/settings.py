@@ -1,4 +1,4 @@
-
+import django_heroku
 import os
 from pathlib import Path
 import environ
@@ -119,3 +119,5 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 LOGIN_REDIRECT_URL = "homepage"
 LOGIN_URL = "login"
+
+django_heroku.settins(locals())
