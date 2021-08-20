@@ -9,7 +9,7 @@ def auto_reset():
     # hours = today.hour
     # minutes = today.min
 
-    if (today.weekday() == 3) and (today.hour >= 15 and today.minute >= 1):
+    if (today.weekday() == 5) and (today.hour >= 17 and today.minute >= 1):
         families = FamilyIdentity.objects.all()
         for family in families:
             family.verified = False
