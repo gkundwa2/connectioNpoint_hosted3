@@ -12,10 +12,10 @@
             {% csrf_token %}
               <fieldset>
                   {% if fam %}
-                      <h6>update family identification information</h6>
+                      <h6>Update Family Identification Information</h6>
                       <br/>
                       <div class="col-md-4 mb-3">
-                          <label >Family representative Official document no.:</label>
+                          <label >Family Representative Official Document No.:</label>
                           <input type="text" maxlength="29" class="form-control" value="{{ fam.national_doc }}" name="official_doc" placeholder="Family representative Official document no."  required>
                       </div>
                       <div class="col-md-4 mb-4">
@@ -27,27 +27,27 @@
                           <input type="text" class="form-control" value="{{ fam.middleName }}"name="middleName"  placeholder="Middle name" >
                       </div>
                       <div class="col-md-4 mb-3">
-                          <label>Last name:</label>
+                          <label>Last Name:</label>
                           <input type="text" class="form-control" value="{{ fam.lastName }}" name="lastName"  placeholder="Last name" required>
                       </div>
                       <div class="col-md-4 mb-3">
-                          <label >Telephone number:</label>
+                          <label >Telephone Number:</label>
                           <input type="text" minlength="10" maxlength="19" value="{{ fam.phone }}" class="form-control" name="phone" placeholder="Telehone number starting by +"  pattern="\+[0-9]+" required>
                       </div>
                       <div class="col-md-4 mb-3">
                           <label >Number of Family Members:</label>
                           <input type="number" min="1" class="form-control" value="{{ fam.familyMembers }}" name="familyMembers" placeholder="Number of Family members"  required>
                       </div>
-                    <button class="btn btn-primary" type="submit" formaction="{% url 'updatepage' fam.id %}">update family info</button>
+                    <button class="btn btn-primary" type="submit" formaction="{% url 'updatepage' fam.id %}">Update Family Info</button>
               {% else %}
-                    <h6>Register new family identification</h6>
+                    <h6>Register New Family Identification</h6>
                     <br/>
                     <div class="col-md-4 mb-3">
-                        <label >Family representative Official document no.:</label>
+                        <label >Family Representative Official Document No.:</label>
                         <input type="text" maxlength="29" class="form-control" name="official_doc" placeholder="Family representative Official document no."  required>
                     </div>
                     <div class="col-md-4 mb-4">
-                        <label >First name:</label>
+                        <label >First Name:</label>
                         <input type="text" class="form-control" name="firstName"  placeholder="First name" required>
                     </div>
                     <div class="col-md-4 mb-3">
@@ -55,18 +55,18 @@
                         <input type="text" class="form-control" name="middleName"  placeholder="Middle name" >
                     </div>
                     <div class="col-md-4 mb-3">
-                        <label>Last name:</label>
+                        <label>Last Name:</label>
                         <input type="text" class="form-control" name="lastName"  placeholder="Last name" required>
                     </div>
                     <div class="col-md-4 mb-3">
-                        <label >Telephone number:</label>
+                        <label >Telephone Number:</label>
                         <input type="text" minlength="10" maxlength="19" class="form-control" name="phone" placeholder="Telehone number starting by +"  pattern="\+[0-9]+" required>
                     </div>
                     <div class="col-md-4 mb-3">
                         <label >Number of Family Members:</label>
                         <input type="number" min="1" class="form-control" name="familyMembers" placeholder="Number of Family members"  required/>
                     </div>
-                    <button class="btn btn-info" type="submit" formaction="{% url 'registerpage' %}">Register new family</button>
+                    <button class="btn btn-info" type="submit" formaction="{% url 'registerpage' %}">Register New Family</button>
               {% endif %}
           </fieldset>
         </form>

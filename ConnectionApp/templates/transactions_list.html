@@ -10,17 +10,17 @@
             <div class="col-4">
                <div class="card bg-info">
                  <div class="card-title">
-                   <h6 class="text-center" style="margin-bottom: -10px; margin-top: 5px; padding-bottom: 0px;">we have served</h6>
+                   <h6 class="text-center" style="margin-bottom: -10px; margin-top: 5px; padding-bottom: 0px;">We Have Served</h6>
                  </div>
                  <hr/>
                  <div class="card-body text-center">
-                   {{ famillies }} families, with {{ members }} members
+                   {{ famillies }} Families, with {{ members }} Members
                  </div>
                </div>
             </div>
             <div class="col-2"></div>
             <div class="col-6">
-              <p style="font-weight: bold;">Filter transactions by date range</p>
+              <p style="font-weight: bold;">Filter Transactions By Date Range</p>
                <form method="get" class="form-inline" action="{% url 'transactions_list' %}">
                   {% csrf_token %}
                   <label style="font-weight: bold;">From: </label>
@@ -31,15 +31,15 @@
               </form><br/>
             </div>
         </div>
-        <h4 class="text-center">List of transactions made</h4>
+        <h4 class="text-center">List Of Transactions Made</h4>
         <div style="width: 100%; overflow-x: scroll;">
             <table class="table table-responsive table-bordered table-hover table-striped" style="white-space: nowrap;">
                     <thead class="thead-white">
                         <tr class="table-success">
-                            <th scope="col">Date of transaction</th>
-                            <th scope="col">Family representative</th>
-                            <th scope="col">Family members</th>
-                            <th scope="col">Additional info</th>
+                            <th scope="col">Date Of Transaction</th>
+                            <th scope="col">Family Representative</th>
+                            <th scope="col">Family Members</th>
+                            <th scope="col">Additional Info</th>
                             <th scope="col" colspan="1" class="text-center"> Actions</th>
                         </tr>
                     </thead>
@@ -49,9 +49,9 @@
                         <tr class="bg-white">
                             <td>{{obj.trans_date}}</td>
                             <td>{{obj.family.firstName}} {{obj.family.middleName}} {{obj.family.lastName}}</td>
-                            <td>{{obj.family.familyMembers}} members</td>
+                            <td>{{obj.family.familyMembers}} Members</td>
                             <td>{{obj.food_given}}</td>
-                              <td><a href="{% url 'delete_warning_trans' obj.id %}" class="btn btn-outline-danger">delete</a></td>
+                              <td><a href="{% url 'delete_warning_trans' obj.id %}" class="btn btn-outline-danger">Delete</a></td>
                         </tr>
                     {% endfor%}
                     </tbody>

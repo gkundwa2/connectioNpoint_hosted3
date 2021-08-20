@@ -185,7 +185,7 @@ def create_transaction(request, fname, lname, id):
             trans = Transaction(family=family_identity, food_given=note)
             trans.save()
             messages.success(
-                request, "new family transaction recorded successfully!")
+                request, "New Family Transaction Recorded Successfully!")
         except Exception as e:
             pass
     return redirect("list_details", id)
