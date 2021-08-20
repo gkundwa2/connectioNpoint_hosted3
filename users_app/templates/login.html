@@ -2,14 +2,14 @@
 {% load crispy_forms_tags %}
 
 {% block title %}
-    <title> Register - Connection Point</title>
+    <title> Login - Connection Point</title>
 {% endblock title %}
 
 {% block content %}
     <div class="container">
     </br>
 
-        <h2>Create an Account On ConnectioN Point DataBase </h2>
+        <h2>Login To ConnectioN Point DataBase </h2>
 
     {% if messages %}
         {% for message in messages %}
@@ -25,10 +25,10 @@
         <form method="POST" class="mt-5 col-6">
             {% csrf_token %}
 
-            {{register_form|crispy }}
+            {{form|crispy }}
 
         </br>
-        <button class= "btn btn-primary mb-5" type="submit">Register</button>
+        <button class= "btn btn-primary mb-5" type="submit">Login</button>
         </form>
     </div>
 {% endblock content %}

@@ -26,10 +26,24 @@
         <a class="nav-link active" href="{% url 'registerpage'%}">Register new family</a>
         <a class="nav-link active" href="{% url 'listpage'%}">Families List</a>
         <a class="nav-link active" href="{% url 'transactions_list'%}">Transactions</a>
-        <a class="nav-link" href="#">Login</a>
-        <a class="nav-link" href="#">Logout</a>
       </div>
     </div>
+    {% comment %} authentication functions {% endcomment %}
+    {% if user.is_authenticated %}
+      <div class="form-inline">
+        <div class="bg-dark text-white">{{user.username}}</div>
+        <a href="{% url 'logout'%}">
+          <button class="btn btn-info my-2 my-sm-0" type="submit">Logout</button>
+        </a>
+      </div>
+    {% else %}
+      <a href="{% url 'login'%}">
+        <button class="btn btn-success mr-2 my-2 my-sm-0" type="submit">Login</button>
+      </a>
+      <a href="{% url 'register'%}">
+        <button class="btn btn-primary my-2 my-sm-0" type="submit">Register</button>
+      </a>
+    {% endif %}
   </nav>
 </head>
 

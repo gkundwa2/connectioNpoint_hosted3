@@ -35,8 +35,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'ConnectionApp',
     'users_app',
+    'crispy_forms',
 
-    
+
 ]
 
 MIDDLEWARE = [
@@ -122,3 +123,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 # line 124 show let Django know where you stored your project's static files
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+LOGIN_REDIRECT_URL = "homepage"
+LOGIN_URL = "login"
