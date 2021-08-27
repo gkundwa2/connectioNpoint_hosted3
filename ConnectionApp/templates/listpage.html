@@ -17,21 +17,21 @@
            {% csrf_token %}
             <label style="font-weight: bold;">Search by: </label>
             <select name="search_option" style="padding: 7px; border: 1px solid rgba(0,0,0,0.5); border-radius: 5px;">
-              <option value="document">Official document no.</option>
-              <option value="first_name">First name</option>
-              <option value="last_name">Last name</option>
-              <option value="phone">Telehone number</option>
-              <option value="family_members">Family members number</option>
+              <option value="document">Official Document No.</option>
+              <option value="first_name">First Name</option>
+              <option value="last_name">Last Name</option>
+              <option value="phone">Telehone Number</option>
+              <option value="family_members">Family Members Number</option>
             </select>
             <input type="text" name="search_pattern" placeholder="enter your search..." required style="padding: 7px; border: 1px solid rgba(0,0,0,0.5); border-radius: 5px;">
             <input type="submit" value="search" class="btn btn-outline-info">
         </form><br/>
-        <h4 class="text-center">List of famillies registered</h4>
+        <h4 class="text-center">List Of Families Registered</h4>
         <div style="width: 100%; overflow-x: scroll;">
             <table class="table table-responsive table-bordered table-hover table-striped" style="white-space: nowrap;">
                     <thead class="thead-white">
                         <tr class="table-success">
-                            <th scope="col">Official document no.</th>
+                            <th scope="col">Official Document No.</th>
                             <th scope="col">First Name</th>
                             <th scope="col">Middle Name</th>
                             <th scope="col">Last Name</th>
@@ -51,19 +51,19 @@
                                 <td>{{obj.middleName}}</td>
                                 <td>{{obj.lastName}}</td>
                                 <td>{{obj.phone}}</td>
-                                <td>{{obj.familyMembers}} members</td>
+                                <td>{{obj.familyMembers}} Members</td>
                                 {% if obj.verified %}
                                   <td class="bg-success">Verified</td>
-                                  <td><a href="{% url 'list_details' obj.id %}" class="btn btn-outline-primary">view details</a></td>
-                                  <td><a href="{% url 'updatepage' obj.id %}" class="btn btn-outline-info">edit</a></td>
-                                  <td><a href="{% url 'verify' obj.id %}" class="btn btn-outline-danger">delete</a></td>
-                                  <td><a href="{% url 'verify' obj.id %}" class="btn btn-outline-info">unverify</a></td>
+                                  <td><a href="{% url 'list_details' obj.id %}" class="btn btn-outline-primary">View Details</a></td>
+                                  <td><a href="{% url 'updatepage' obj.id %}" class="btn btn-outline-info">Edit</a></td>
+                                  <td><a href="{% url 'verify' obj.id %}" class="btn btn-outline-danger">Delete</a></td>
+                                  <td><a href="{% url 'verify' obj.id %}" class="btn btn-outline-info">Unverify</a></td>
                                 {%else%}
                                   <td class="bg-warning">Not Verified</td>
-                                  <td><a href="{% url 'list_details' obj.id %}" class="btn btn-outline-primary">view details</a></td>
-                                  <td><a href="{% url 'updatepage' obj.id %}" class="btn btn-outline-info">edit</a></td>
-                                  <td><a href="{% url 'delete_warning_family' obj.id %}" class="btn btn-outline-danger">delete</a></td>
-                                  <td><a href="{% url 'verify' obj.id %}" class="btn btn-outline-primary">verify</a></td>
+                                  <td><a href="{% url 'list_details' obj.id %}" class="btn btn-outline-primary">View Details</a></td>
+                                  <td><a href="{% url 'updatepage' obj.id %}" class="btn btn-outline-info">Edit</a></td>
+                                  <td><a href="{% url 'delete_warning_family' obj.id %}" class="btn btn-outline-danger">Delete</a></td>
+                                  <td><a href="{% url 'verify' obj.id %}" class="btn btn-outline-primary">Verify</a></td>
                                 {% endif %}
                             </tr>
                     {% endfor%}
@@ -78,7 +78,7 @@
               {% endif %}
 
               <span class="current">
-                  Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                  Page {{ page_obj.number }} Of {{ page_obj.paginator.num_pages }}.
               </span>
 
               {% if page_obj.has_next %}
