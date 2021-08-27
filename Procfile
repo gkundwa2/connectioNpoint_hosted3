@@ -1,1 +1,1 @@
-web: gunicorn ConnectionApp.wsgi
+web: gunicorn ConnectionPoint.wsgi
