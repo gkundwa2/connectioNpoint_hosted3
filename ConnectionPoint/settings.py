@@ -1,4 +1,4 @@
-# import django_heroku
+import django_heroku
 import os
 from pathlib import Path
 import environ
@@ -122,4 +122,4 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 LOGIN_REDIRECT_URL = "homepage"
 LOGIN_URL = "login"
 
-# django_heroku.settings(locals())
+django_heroku.settings(locals())
