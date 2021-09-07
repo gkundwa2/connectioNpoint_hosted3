@@ -82,8 +82,8 @@
               </span>
 
               {% if page_obj.has_next %}
-                  <a href="?page={{ page_obj.next_page_number }}&search_option={{ search_option }}&search_pattern={{ search_pattern }}" class="btn btn-outline-primary">last</a>
-                  <a href="?page={{ page_obj.paginator.num_pages }}&search_option={{ search_option }}&search_pattern={{ search_pattern }}" class="btn btn-outline-primary">next &raquo;</a>
+                   <a href="?page={{ page_obj.paginator.num_pages }}&search_option={{ search_option }}&search_pattern={{ search_pattern }}" class="btn btn-outline-primary">last</a>
+                  <a href="?page={{ page_obj.next_page_number }}&search_option={{ search_option }}&search_pattern={{ search_pattern }}" class="btn btn-outline-primary">next &raquo;</a>
               {% endif %}
           </p>
       </div>
