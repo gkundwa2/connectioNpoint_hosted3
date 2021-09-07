@@ -1,5 +1,5 @@
-# import dj_database_url
-# import django_heroku
+import dj_database_url
+import django_heroku
 import os
 from pathlib import Path
 import environ
@@ -75,8 +75,8 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR / 'db.sqlite3'),
     }
 }
-# db_from_env = dj_database_url.config(conn_max_age=600)
-# DATABASES['default'].update(db_from_env)
+db_from_env = dj_database_url.config(conn_max_age=600)
+DATABASES['default'].update(db_from_env)
 
 
 # Password validation
@@ -125,4 +125,4 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 LOGIN_REDIRECT_URL = "homepage"
 LOGIN_URL = "login"
 
-# django_heroku.settings(locals())
+django_heroku.settings(locals())
