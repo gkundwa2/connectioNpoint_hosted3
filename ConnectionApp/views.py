@@ -40,7 +40,7 @@ def listpage(request):
             all_families = FamilyIdentity.objects.filter(
                 phone__icontains=search_pattern)
 
-    paginator = Paginator(all_families, 10)
+    paginator = Paginator(all_families, 6)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     context = {'page_obj': page_obj,
