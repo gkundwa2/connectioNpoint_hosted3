@@ -142,7 +142,7 @@ def verify(request, pk):
     try:
         page = request.GET.get('page')
         if page is None:
-     except:
+    except:
         pass
         
     try:
