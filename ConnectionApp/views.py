@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, reverse
 from django.http import HttpResponse
 from django.contrib import messages
 from django.core.paginator import Paginator
@@ -138,15 +138,19 @@ def updatepage(request, id):
 @login_required
 def verify(request, pk):
     auto_reset()
-    page = request.get('page')
-    if page is None:
-        page=1
+    page=1
+    try:
+        page = request.GET.get('page')
+        if page is None:
+     except:
+        pass
+        
     try:
         family_identity = FamilyIdentity.objects.get(id=pk)
         family_identity.setVerified()
-        return redirect('listpage', page=page)
+        return redirect(reverse('listpage') + "?page={}".format(page))
     except FamilyIdentity.DOESNOTEXIST:
-        return redirect('listpage', page=page)
+        return redirect(reverse('listpage') + "?page={}".format(page))
 
 
 @login_required
