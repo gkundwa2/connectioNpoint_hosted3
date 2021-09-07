@@ -141,7 +141,6 @@ def verify(request, pk):
     page=1
     try:
         page = request.GET.get('page')
-        if page is None:
     except:
         pass
         
