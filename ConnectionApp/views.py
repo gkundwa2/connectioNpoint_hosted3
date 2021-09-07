@@ -20,7 +20,7 @@ def homepage(request):
 def listpage(request):
 
     auto_reset()
-    all_families = FamilyIdentity.objects.all()
+    all_families = FamilyIdentity.objects.all().order_by('firstName')
     search_option = ""
     search_pattern = ""
     if request.GET.get("search_option", False):
@@ -29,16 +29,16 @@ def listpage(request):
 
         if search_option.strip().lower() == "first_name":
             all_families = FamilyIdentity.objects.filter(
-                firstName__icontains=search_pattern).order_by("firstName")
+                firstName__icontains=search_pattern).order_by('firstName')
         elif search_option.strip().lower() == "last_name":
             all_families = FamilyIdentity.objects.filter(
-                lastName__icontains=search_pattern).order_by("firstName")
+                lastName__icontains=search_pattern).order_by('firstName')
         elif search_option.strip().lower() == "family_members":
             all_families = FamilyIdentity.objects.filter(
-                familyMembers__icontains=search_pattern).order_by("firstName")
+                familyMembers__icontains=search_pattern).order_by('firstName')
         elif search_option.strip().lower() == "phone":
             all_families = FamilyIdentity.objects.filter(
-                phone__icontains=search_pattern).order_by("firstName")
+                phone__icontains=search_pattern).order_by('firstName')
 
     paginator = Paginator(all_families, 6)
     page_number = request.GET.get('page')
