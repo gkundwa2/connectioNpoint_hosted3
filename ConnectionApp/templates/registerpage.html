@@ -14,10 +14,6 @@
                   {% if fam %}
                       <h6>Update Family Identification Information</h6>
                       <br/>
-                      <div class="col-md-4 mb-3">
-                          <label >Family Representative Official Document No.:</label>
-                          <input type="text" maxlength="29" class="form-control" value="{{ fam.national_doc }}" name="official_doc" placeholder="Family representative Official document no."  required>
-                      </div>
                       <div class="col-md-4 mb-4">
                           <label >First name:</label>
                           <input type="text" class="form-control" name="firstName"  value="{{ fam.firstName }}" placeholder="First name" required>
@@ -32,7 +28,7 @@
                       </div>
                       <div class="col-md-4 mb-3">
                           <label >Telephone Number:</label>
-                          <input type="text" minlength="10" maxlength="19" value="{{ fam.phone }}" class="form-control" name="phone" placeholder="Telehone number starting by +"  pattern="\+[0-9]+" required>
+                          <input type="text" minlength="10" maxlength="19" value="{{ fam.phone }}" class="form-control" name="phone" placeholder="Telehone number starting by +"  pattern="\+[0-9]+">
                       </div>
                       <div class="col-md-4 mb-3">
                           <label >Number of Family Members:</label>
@@ -40,12 +36,8 @@
                       </div>
                     <button class="btn btn-primary" type="submit" formaction="{% url 'updatepage' fam.id %}">Update Family Info</button>
               {% else %}
-                    <h6>Register New Family Identification</h6>
+                    <h4>Register New Family Identification</h4>
                     <br/>
-                    <div class="col-md-4 mb-3">
-                        <label >Family Representative Official Document No.:</label>
-                        <input type="text" maxlength="29" class="form-control" name="official_doc" placeholder="Family representative Official document no."  required>
-                    </div>
                     <div class="col-md-4 mb-4">
                         <label >First Name:</label>
                         <input type="text" class="form-control" name="firstName"  placeholder="First name" required>
@@ -60,7 +52,7 @@
                     </div>
                     <div class="col-md-4 mb-3">
                         <label >Telephone Number:</label>
-                        <input type="text" minlength="10" maxlength="19" class="form-control" name="phone" placeholder="Telehone number starting by +"  pattern="\+[0-9]+" required>
+                        <input type="text" minlength="10" maxlength="19" class="form-control" name="phone" placeholder="Telehone number starting by +"  pattern="\+[0-9]+">
                     </div>
                     <div class="col-md-4 mb-3">
                         <label >Number of Family Members:</label>

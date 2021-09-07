@@ -39,11 +39,8 @@ def listpage(request):
         elif search_option.strip().lower() == "phone":
             all_families = FamilyIdentity.objects.filter(
                 phone__icontains=search_pattern)
-        elif search_option.strip().lower() == "document":
-            all_families = FamilyIdentity.objects.filter(
-                national_doc__icontains=search_pattern)
 
-    paginator = Paginator(all_families, 5)
+    paginator = Paginator(all_families, 10)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     context = {'page_obj': page_obj,
@@ -99,7 +96,7 @@ def registerpage(request):
             middleName=middleName,
             familyMembers=familyMembers,
             phone=phone,
-            national_doc=document
+            # national_doc=document
         )
         family_identity.save()
         messages.success(
@@ -127,7 +124,6 @@ def updatepage(request, id):
             family_identity.middleName = middleName
             family_identity.familyMembers = familyMembers
             family_identity.phone = phone
-            family_identity.national_doc = document
 
             family_identity.save()
             messages.success(
