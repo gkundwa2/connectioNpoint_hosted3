@@ -88,7 +88,6 @@ def registerpage(request):
         middleName = request.POST.get('middleName', "-")
         familyMembers = request.POST.get('familyMembers', 0)
         phone = request.POST.get("phone", "-")
-        document = request.POST.get("official_doc", "-")
 
         family_identity = FamilyIdentity(
             firstName=firstName,
@@ -96,7 +95,6 @@ def registerpage(request):
             middleName=middleName,
             familyMembers=familyMembers,
             phone=phone,
-            # national_doc=document
         )
         family_identity.save()
         messages.success(
@@ -116,7 +114,6 @@ def updatepage(request, id):
         middleName = request.POST.get('middleName', "-")
         familyMembers = request.POST.get('familyMembers', 0)
         phone = request.POST.get("phone", "-")
-        document = request.POST.get("official_doc", "-")
         try:
             family_identity = FamilyIdentity.objects.get(pk=id)
             family_identity.firstName = firstName
@@ -141,12 +138,15 @@ def updatepage(request, id):
 @login_required
 def verify(request, pk):
     auto_reset()
+    page = request.get('page')
+    if page is None:
+        page=1
     try:
         family_identity = FamilyIdentity.objects.get(id=pk)
         family_identity.setVerified()
-        return redirect('listpage')
+        return redirect('listpage', page=page)
     except FamilyIdentity.DOESNOTEXIST:
-        return redirect('listpage')
+        return redirect('listpage', page=page)
 
 
 @login_required
