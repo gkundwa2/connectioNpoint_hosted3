@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, reverse
 from django.http import HttpResponse
 from django.contrib import messages
 from django.core.paginator import Paginator
@@ -20,7 +20,7 @@ def homepage(request):
 def listpage(request):
 
     auto_reset()
-    all_families = FamilyIdentity.objects.all()
+    all_families = FamilyIdentity.objects.all().order_by('firstName')
     search_option = ""
     search_pattern = ""
     if request.GET.get("search_option", False):
@@ -29,18 +29,18 @@ def listpage(request):
 
         if search_option.strip().lower() == "first_name":
             all_families = FamilyIdentity.objects.filter(
-                firstName__icontains=search_pattern)
+                firstName__icontains=search_pattern).order_by('firstName')
         elif search_option.strip().lower() == "last_name":
             all_families = FamilyIdentity.objects.filter(
-                lastName__icontains=search_pattern)
+                lastName__icontains=search_pattern).order_by('firstName')
         elif search_option.strip().lower() == "family_members":
             all_families = FamilyIdentity.objects.filter(
-                familyMembers__icontains=search_pattern)
+                familyMembers__icontains=search_pattern).order_by('firstName')
         elif search_option.strip().lower() == "phone":
             all_families = FamilyIdentity.objects.filter(
-                phone__icontains=search_pattern)
+                phone__icontains=search_pattern).order_by('firstName')
 
-    paginator = Paginator(all_families, 10)
+    paginator = Paginator(all_families, 6)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     context = {'page_obj': page_obj,
@@ -88,7 +88,6 @@ def registerpage(request):
         middleName = request.POST.get('middleName', "-")
         familyMembers = request.POST.get('familyMembers', 0)
         phone = request.POST.get("phone", "-")
-        document = request.POST.get("official_doc", "-")
 
         family_identity = FamilyIdentity(
             firstName=firstName,
@@ -96,7 +95,6 @@ def registerpage(request):
             middleName=middleName,
             familyMembers=familyMembers,
             phone=phone,
-            # national_doc=document
         )
         family_identity.save()
         messages.success(
@@ -116,7 +114,6 @@ def updatepage(request, id):
         middleName = request.POST.get('middleName', "-")
         familyMembers = request.POST.get('familyMembers', 0)
         phone = request.POST.get("phone", "-")
-        document = request.POST.get("official_doc", "-")
         try:
             family_identity = FamilyIdentity.objects.get(pk=id)
             family_identity.firstName = firstName
@@ -141,12 +138,18 @@ def updatepage(request, id):
 @login_required
 def verify(request, pk):
     auto_reset()
+    page=1
+    try:
+        page = request.GET.get('page')
+    except:
+        pass
+        
     try:
         family_identity = FamilyIdentity.objects.get(id=pk)
         family_identity.setVerified()
-        return redirect('listpage')
+        return redirect(reverse('listpage') + "?page={}".format(page))
     except FamilyIdentity.DOESNOTEXIST:
-        return redirect('listpage')
+        return redirect(reverse('listpage') + "?page={}".format(page))
 
 
 @login_required

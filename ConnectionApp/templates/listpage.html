@@ -54,13 +54,13 @@
                                 <td>{{obj.familyMembers}} Members</td>
                                 {% if obj.verified %}
                                   <td class="bg-success">Verified</td>
-                                  <td><a href="{% url 'verify' obj.id %}" class="btn btn-outline-info">Unverify</a></td>
+                                  <td><a href="{% url 'verify' obj.id %}?page={{ page_obj.number }}" class="btn btn-outline-info">Unverify</a></td>
                                   <td><a href="{% url 'list_details' obj.id %}" class="btn btn-outline-primary">Record Transaction</a></td>
                                   <td><a href="{% url 'updatepage' obj.id %}" class="btn btn-outline-info">Edit</a></td>
                                   <td><a href="{% url 'verify' obj.id %}" class="btn btn-outline-danger">Delete</a></td>
                                 {%else%}
                                   <td class="bg-warning">Not Verified</td>
-                                  <td><a href="{% url 'verify' obj.id %}" class="btn btn-outline-primary">Verify</a></td>
+                                  <td><a href="{% url 'verify' obj.id %}?page={{ page_obj.number }}" class="btn btn-outline-primary">Verify</a></td>
                                   <td><a href="{% url 'list_details' obj.id %}" class="btn btn-outline-primary">Record Transaction</a></td>
                                   <td><a href="{% url 'updatepage' obj.id %}" class="btn btn-outline-info">Edit</a></td>
                                   <td><a href="{% url 'delete_warning_family' obj.id %}" class="btn btn-outline-danger">Delete</a></td>
@@ -82,8 +82,8 @@
               </span>
 
               {% if page_obj.has_next %}
-                  <a href="?page={{ page_obj.next_page_number }}&search_option={{ search_option }}&search_pattern={{ search_pattern }}" class="btn btn-outline-primary">last</a>
-                  <a href="?page={{ page_obj.paginator.num_pages }}&search_option={{ search_option }}&search_pattern={{ search_pattern }}" class="btn btn-outline-primary">next &raquo;</a>
+                   <a href="?page={{ page_obj.paginator.num_pages }}&search_option={{ search_option }}&search_pattern={{ search_pattern }}" class="btn btn-outline-primary">last</a>
+                  <a href="?page={{ page_obj.next_page_number }}&search_option={{ search_option }}&search_pattern={{ search_pattern }}" class="btn btn-outline-primary">next &raquo;</a>
               {% endif %}
           </p>
       </div>

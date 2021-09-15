@@ -20,6 +20,11 @@
                   <label style="font-weight: bold;">Record New Transaction: </label>
                   <input type="text" name="note" placeholder="Note about transaction..." style="padding: 7px; border: 1px solid rgba(0,0,0,0.5); border-radius: 5px;">
                   <input type="submit" value="record" class="btn btn-outline-primary">
+                  {% if fam.verified %}
+                    <a href="{% url 'verify' fam.id %}?page={{ page_obj.number }}" class="btn btn-outline-info" style="padding-left: 20px;">Unverify</a>
+                  {% else %}
+                    <a href="{% url 'verify' fam.id %}?page={{ page_obj.number }}" class="btn btn-outline-info" style="padding-left: 20px;">Verify</a>
+                  {% endif %}
               </form>
             </div>
             <div class="col-6">

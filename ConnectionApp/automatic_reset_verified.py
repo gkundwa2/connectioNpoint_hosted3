@@ -5,11 +5,8 @@ from datetime import date, datetime
 def auto_reset():
 
     today = datetime.today()
-    # weekday = today.weekday()
-    # hours = today.hour
-    # minutes = today.min
+    if (today.weekday() == 2) and (today.hour >= 21 and today.minute >= 6):
 
-    if (today.weekday() == 2) and (today.hour >= 20 and today.minute >= 57):
         families = FamilyIdentity.objects.all()
         for family in families:
             family.verified = False
