@@ -238,8 +238,9 @@ def transactions_list(request):
     for trans in transactions:
         if trans.family not in famillies:
             famillies.append(trans.family)
-    for fam in famillies:
-        members += fam.familyMembers
+        members += trans.family.familyMembers
+#     for fam in famillies:
+#         members += fam.familyMembers
     context = {"famillies": len(famillies),
                "members": members,
                "page_obj": page_obj,
